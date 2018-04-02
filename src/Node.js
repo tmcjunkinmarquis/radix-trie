@@ -1,6 +1,6 @@
 class Node {
-  constructor() {
-
+  constructor(s) {
+    this.completeWord = false;
   }
 }
 
