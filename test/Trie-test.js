@@ -21,9 +21,9 @@ describe('Trie', function () {
     assert.equal(trie.wordCount, 0);
   })
 
-  // it('should store child nodes', () => {
-  //   expect(trie.children).to.deep.equal({})
-  // })
+  it('should store child nodes', function() {
+    assert.deepEqual(trie.children, {})
+  })
 
   // describe('Insert', () => {
 
