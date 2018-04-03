@@ -17,6 +17,8 @@ describe('Node', function () {
       assert.equal(node.completeWord, false);
     });
 
+    
+
 
   
   //   it('should have a default popularity value of zero', () => {
