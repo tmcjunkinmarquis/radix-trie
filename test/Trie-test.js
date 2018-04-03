@@ -17,9 +17,9 @@ describe('Trie', function () {
     assert.isFunction(Trie);
   })
 
-  // it('should track the number of words', () => {
-  //   expect(trie.wordCount).to.equal(0);
-  // })
+  it('should track the number of words', function() {
+    assert.equal(trie.wordCount, 0);
+  })
 
   // it('should store child nodes', () => {
   //   expect(trie.children).to.deep.equal({})
