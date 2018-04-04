@@ -1,7 +1,8 @@
 class Node {
-  constructor(data) {
-    this.data = data;
+  constructor(args = []) {
+    this.data = [...args];
     this.completeWord = false;
+    this.children = {};
   }
 }
 
