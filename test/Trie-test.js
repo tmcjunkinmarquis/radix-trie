@@ -35,12 +35,20 @@ describe('Trie', () => {
       assert.deepNestedInclude(trie.rootNode.children, { howdy: { data: ['h', 'o', 'w', 'd', 'y'], completeWord: true, children: {} } });
     })
 
-    it('should make a second child on the root when second word is inserted', () => {
+    it.only('should make a revised child on the root when second word shares prefix letters with an existing child', () => {
       trie.insert('howdy');
       trie.insert('howser');
-      console.log(trie.rootNode)
 
-      assert.deepNestedInclude(trie.rootNode.children, { how: { data: ['h', 'o', 'w'], completeWord: false, children: {}}});
+      assert.deepNestedInclude(trie.rootNode.children, { how: { data: ['h', 'o', 'w'], completeWord: false, children: {dy:{data: ['d','y'], completeWord: true, children: {}}, ser:{data: ['s','e', 'r'], completeWord: true, children: {}}}}});
+    })
+
+    it.only('should add a new child to the root', () => {
+      trie.insert('howdy');
+      trie.insert('howser');
+      trie.insert('dog');
+      // console.log(trie.rootNode)
+
+      assert.deepNestedInclude(trie.rootNode.children, { how: { data: ['h', 'o', 'w'], completeWord: false, children: {dy:{data: ['d','y'], completeWord: true, children: {}}, ser:{data: ['s','e', 'r'], completeWord: true, children: {}}}}});
     })
 
 
