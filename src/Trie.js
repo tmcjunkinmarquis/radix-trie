@@ -16,7 +16,6 @@ class Trie {
       
     } else {
       
-      
       const currentNodeKids = Object.keys(currentNode.children)
       currentNodeKids.forEach(kid=>{
         const kidLetters = [...kid]
@@ -28,6 +27,9 @@ class Trie {
           if(kidLetters[i] === wordLetters[i]){
             letterCounter++
             holdingArray.push(kidLetters[i]) 
+          } else {
+            currentNode.children[word] = new Node(word)
+            currentNode.children[word].completeWord = true
           }
         }
         const prefix = holdingArray.join('')
