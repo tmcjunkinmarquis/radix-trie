@@ -23,7 +23,7 @@ describe('Trie', () => {
 
   describe('Insert', () => {
 
-    it('should make a root node object when the first word is inserted', () => {
+    it.only('should make a root node object when the first word is inserted', () => {
       trie.insert('howdy');
 
       assert.isObject(trie.rootNode);
