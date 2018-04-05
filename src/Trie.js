@@ -11,8 +11,7 @@ class Trie {
     let currentNode = this.rootNode;
 
     if(!Object.keys(currentNode.children).length) {
-      this.matchZero(word, currentNode);  
-      return;
+      return this.matchZero(word, currentNode);   
     }
     
     let match = this.findTheMatch(currentNode, word);
@@ -28,8 +27,7 @@ class Trie {
 
   matchZero(word, node) {
     node.children[word] = new Node(word);
-    node.children[word].completeWord = true;
-    
+    node.children[word].completeWord = true; 
   }
 
   findTheMatch(node, word) {
