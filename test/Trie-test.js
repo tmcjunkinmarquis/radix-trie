@@ -69,6 +69,34 @@ describe('Trie', () => {
     });
   });
 
+  describe('Suggest', () => {
+    it('Should suggest a word based on a prefix', ()=> {
+      trie.insert('lost');
+      let suggestion = trie.suggest('lo');
+      assert.include('lost', suggestion);
+    });
+    it('Should suggest mulitple words based on a given prefix', () => {
+      const dictionary = ['howdy', 'how', 'howser', 'house', 'lost', 'lose',
+                         'loser', 'losing', 'relax', 'relates', 'relace', 'relays'];
+      
+      dictionary.forEach(word => trie.insert(word));
+      let hoPrefix = trie.suggest('ho');
+      assert.include('howdy', prefix);
+      assert.include('how', prefix);
+      assert.include('howser', prefix);
+      assert.include('house', prefix);
+      let loPrefix = trie.suggest('los');
+      assert.include('lost', loPrefix);
+      assert.include('lose', loPrefix);
+      assert.include('loser', loPrefix);
+      assert.include('losing', loPrefix);
+      let relPrefix = trie.suggest('rela');
+      assert.include('relax', relPrefix);
+      assert.include('relates', relPrefix);
+      assert.include('relace', relPrefix);
+      assert.include('relays', relPrefix);
+  });
+
 });
 
 
