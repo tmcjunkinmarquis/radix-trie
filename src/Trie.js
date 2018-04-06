@@ -13,9 +13,7 @@ class Trie {
     if(!Object.keys(currentNode.children).length) {
       return this.matchZero(word, currentNode);   
     }
-
-
-    
+ 
     let match = this.findTheMatch(currentNode, word);
 
     if(match === ['matchTypeOne']){
@@ -38,23 +36,32 @@ class Trie {
     const wordLetters = [...word]
     const nodeKids = Object.keys(node.children);
     
-    
-    const matchTypeOne = ((node, word) => {
+    const matchTypeOne = ((node, word) => { 
+      let kidLetters;
+      nodeKids.forEach(kid=>{
+        kidLetters = [...kid]
+      })
+
       if (kidLetters[0] !== wordLetters[0]) {
-        console.log('true')
+        // console.log('true')
         return true
       }else{}
         return false
-      })();
+    })();
 
-    if (matchTypeOne === true) {this.matchOne()}
+    if (matchTypeOne) {
+      // this.matchOne()
+      node.children[word] = new Node(word);
+      node.children[word].completeWord = true;
+    }
 
-    const matchTypeTwo = ((node, word) => {
-      let letterCounter = 0;
-      const holdingArray = [];
-      const kidLetters = [...kid];
+    const matchTypeTwo = ((node, word) => { 
+      let holdingArray = [];
+      let kidLetters;
 
       nodeKids.forEach(kid=>{
+        let letterCounter = 0;
+        kidLetters = [...kid]
         for (let i = 0; i < kidLetters.length; i++){
           if(kidLetters[i] === wordLetters[i]){
             letterCounter++;
@@ -66,34 +73,21 @@ class Trie {
       return [letterCounter, matchingPrefix]
     })();
 
+    if (matchTypeTwo) {
+      console.log('hi')
+    }
+
     const matchTypeThree = (() => {
-      if (condition)
+      if (true)
         return 5
       else
         return 10
     })();
 
-
-
-    
-
-    // 
-    // 
-    // const parsedKidNode = new Node(prefix);
-    // delete node.children[kidMatch];
-    // node.children[prefix] = parsedKidNode;
-    // const suffix1 = wordLetters.slice(letterCounter);
-    // const suffix2 = kidLetters.slice(letterCounter);
-    // node.children[prefix].children[suffix1.join('')] = new Node(suffix1.join(''));
-    // node.children[prefix].children[suffix1.join('')].completeWord = true;
-    // node.children[prefix].children[suffix2.join('')] = new Node(suffix2.join(''));
-    // node.children[prefix].children[suffix2.join('')].completeWord = true;  
-
   }
-    
-    
-   
+     
   matchOne(node, word) {
+    console.log(node)
     node.children[word] = new Node(word);
     node.children[word].completeWord = true;
   }
@@ -108,6 +102,18 @@ class Trie {
   matchThree(node, word) {
 
   }
+
+  // 
+    // 
+    // const parsedKidNode = new Node(prefix);
+    // delete node.children[kidMatch];
+    // node.children[prefix] = parsedKidNode;
+    // const suffix1 = wordLetters.slice(letterCounter);
+    // const suffix2 = kidLetters.slice(letterCounter);
+    // node.children[prefix].children[suffix1.join('')] = new Node(suffix1.join(''));
+    // node.children[prefix].children[suffix1.join('')].completeWord = true;
+    // node.children[prefix].children[suffix2.join('')] = new Node(suffix2.join(''));
+    // node.children[prefix].children[suffix2.join('')].completeWord = true;  
 
 }
 

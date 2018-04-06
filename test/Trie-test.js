@@ -35,7 +35,7 @@ describe('Trie', () => {
       assert.deepNestedInclude(trie.rootNode.children, { howdy: { data: ['h', 'o', 'w', 'd', 'y'], completeWord: true, children: {} } });
     });
 
-    it.only('MATCH 1 TEST: should add to the root a child that has no common substring with existing children', ()=>{
+    it('MATCH 1 TEST: should add to the root a child that has no common substring with existing children', ()=>{
       trie.insert('howdy');
       trie.insert('cat');
 
@@ -45,7 +45,7 @@ describe('Trie', () => {
      });
     });
     
-    it('should make a revised child on the root when second word shares prefix letters with an existing child', () => {
+    it.only('MATCH 2 TEST: should make a revised child on the root when second word shares prefix letters with an existing child', () => {
       trie.insert('howdy');
       trie.insert('howser');
 
