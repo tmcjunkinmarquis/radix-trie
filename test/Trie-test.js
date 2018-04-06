@@ -38,11 +38,12 @@ describe('Trie', () => {
     it('MATCH 1 TEST: should add to the root a child that has no common substring with existing children', ()=>{
       trie.insert('howdy');
       trie.insert('cat');
+      trie.insert('pump');
 
       assert.deepNestedInclude(trie.rootNode.children, { 
         howdy: { data: ['h', 'o', 'w', 'd', 'y'], completeWord: true, children: {} }, 
         cat: { data: ['c', 'a', 't'], completeWord: true, children: {} }
-     });
+      });
     });
     
     it.only('MATCH 2 TEST: should make a revised child on the root when second word shares prefix letters with an existing child', () => {
@@ -97,11 +98,6 @@ describe('Trie', () => {
       assert.include('relays', relPrefix);
   });
 
+})
+
 });
-
-
-
-
-
-
-
