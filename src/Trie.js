@@ -13,9 +13,13 @@ class Trie {
     if(!Object.keys(currentNode.children).length) {
       return this.matchZero(word, currentNode);   
     }
+
+
     
     let match = this.findTheMatch(currentNode, word);
-    if(match === 'matchTypeOne'){
+
+    if(match === ['matchTypeOne']){
+      console.log(match)
       this.matchOne(currentNode, word);
     } else if (match === 'matchTypeTwo') {
       console.log('stil need splits');
@@ -33,16 +37,48 @@ class Trie {
   findTheMatch(node, word) {
     const wordLetters = [...word]
     const nodeKids = Object.keys(node.children);
+    
+    
+    const matchTypeOne = ((node, word) => {
+      if (kidLetters[0] !== wordLetters[0]) {
+        console.log('true')
+        return true
+      }else{}
+        return false
+      })();
 
-    const matchOne = nodeKids.forEach((kid, i)=>{
+    if (matchTypeOne === true) {this.matchOne()}
+
+    const matchTypeTwo = ((node, word) => {
+      let letterCounter = 0;
+      const holdingArray = [];
       const kidLetters = [...kid];
-      if(kidLetters[i] !== wordLetters[i]){
-        return 'matchTypeOne';
-      }  
-    })
 
-    // const prefix = holdingArray.join('');
-    // const kidMatch = nodeKids.filter(kid => kid.includes(prefix));
+      nodeKids.forEach(kid=>{
+        for (let i = 0; i < kidLetters.length; i++){
+          if(kidLetters[i] === wordLetters[i]){
+            letterCounter++;
+            holdingArray.push(kidLetters[i]); 
+          }
+        }
+      });
+      const matchingPrefix = holdingArray.join('');
+      return [letterCounter, matchingPrefix]
+    })();
+
+    const matchTypeThree = (() => {
+      if (condition)
+        return 5
+      else
+        return 10
+    })();
+
+
+
+    
+
+    // 
+    // 
     // const parsedKidNode = new Node(prefix);
     // delete node.children[kidMatch];
     // node.children[prefix] = parsedKidNode;
@@ -64,25 +100,14 @@ class Trie {
 
   // matchTwo(word) {
     
-  //       const wordLetters = [...word];
-  //       let letterCounter = 0;
-  //       const holdingArray = [];
+  //       
 
-  //   const nodeKids = Object.keys(node.children);
-  //   nodeKids.forEach(kid=>{
-  //     const kidLetters = [...kid];
-  //     for (let i = 0; i < kidLetters.length; i++){
-  //       if(kidLetters[i] === wordLetters[i]){
-  //         letterCounter++;
-  //         holdingArray.push(kidLetters[i]); 
-  //       }
-  //     }
-  //   });
+  //   
   // }
 
-  // matchThree() {
+  matchThree(node, word) {
 
-  // }
+  }
 
 }
 

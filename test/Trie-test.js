@@ -23,7 +23,7 @@ describe('Trie', () => {
 
   describe('Insert', () => {
 
-    it.only('should make a root node object when the first word is inserted', () => {
+    it('should make a root node object when the first word is inserted', () => {
       trie.insert('howdy');
 
       assert.isObject(trie.rootNode);
@@ -35,6 +35,16 @@ describe('Trie', () => {
       assert.deepNestedInclude(trie.rootNode.children, { howdy: { data: ['h', 'o', 'w', 'd', 'y'], completeWord: true, children: {} } });
     });
 
+    it.only('MATCH 1 TEST: should add to the root a child that has no common substring with existing children', ()=>{
+      trie.insert('howdy');
+      trie.insert('cat');
+
+      assert.deepNestedInclude(trie.rootNode.children, { 
+        howdy: { data: ['h', 'o', 'w', 'd', 'y'], completeWord: true, children: {} }, 
+        cat: { data: ['c', 'a', 't'], completeWord: true, children: {} }
+     });
+    });
+    
     it('should make a revised child on the root when second word shares prefix letters with an existing child', () => {
       trie.insert('howdy');
       trie.insert('howser');
@@ -46,7 +56,9 @@ describe('Trie', () => {
       const dictionary = ['howdy', 'howser', 'dog'];
       dictionary.forEach(word => trie.insert(word));
 
-      assert.deepNestedInclude(trie.rootNode.children, { how: { data: ['h', 'o', 'w'], completeWord: false, children: {dy:{data: ['d','y'], completeWord: true, children: {}}, ser:{data: ['s','e', 'r'], completeWord: true, children: {}}}}, dog: { data: ['d','o','g'], completeWord: true, children: {} } });
+      assert.deepNestedInclude(trie.rootNode.children, { 
+        how: { data: ['h', 'o', 'w'], completeWord: false, children: {dy:{data: ['d','y'], completeWord: true, children: {}}, ser:{data: ['s','e', 'r'], completeWord: true, children: {}}}}, 
+        dog: { data: ['d','o','g'], completeWord: true, children: {} } });
     });
 
     it('should add a word that matches a substring node of an exisiting word and update the node\'s completeWord to true', () => {
