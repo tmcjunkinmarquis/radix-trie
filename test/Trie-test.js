@@ -53,7 +53,7 @@ describe('Trie', () => {
       assert.deepNestedInclude(trie.rootNode.children, { how: { data: ['h', 'o', 'w'], completeWord: false, children: {dy:{data: ['d','y'], completeWord: true, children: {}}, ser:{data: ['s','e', 'r'], completeWord: true, children: {}}}}});
     });
 
-    it.only('should add a new child to a root with an existing child', () => {
+    it('should add a new child to a root with an existing child', () => {
       const dictionary = ['howdy', 'howser', 'dog'];
       dictionary.forEach(word => trie.insert(word));
 
@@ -62,7 +62,7 @@ describe('Trie', () => {
         dog: { data: ['d','o','g'], completeWord: true, children: {} } });
     });
 
-    it('should add a word that matches a substring node of an exisiting word and update the node\'s completeWord to true', () => {
+    it.only('should add a word that matches a substring node of an exisiting word and update the node\'s completeWord to true', () => {
       const dictionary = ['howdy', 'howser', 'dog', 'how'];
       dictionary.forEach(word => trie.insert(word));
 
