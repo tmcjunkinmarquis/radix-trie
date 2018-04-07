@@ -46,14 +46,14 @@ describe('Trie', () => {
       });
     });
     
-    it.only('MATCH 2 TEST: should make a revised child on the root when second word shares prefix letters with an existing child', () => {
+    it('MATCH 2 TEST: should make a revised child on the root when second word shares prefix letters with an existing child', () => {
       trie.insert('howdy');
       trie.insert('howser');
 
       assert.deepNestedInclude(trie.rootNode.children, { how: { data: ['h', 'o', 'w'], completeWord: false, children: {dy:{data: ['d','y'], completeWord: true, children: {}}, ser:{data: ['s','e', 'r'], completeWord: true, children: {}}}}});
     });
 
-    it('should add a new child to a root with an existing child', () => {
+    it.only('should add a new child to a root with an existing child', () => {
       const dictionary = ['howdy', 'howser', 'dog'];
       dictionary.forEach(word => trie.insert(word));
 
