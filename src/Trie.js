@@ -21,6 +21,10 @@ class Trie {
     let resultMatchOne = this.findMatchOne(currentNode, word);
     console.log(word, 'match 1:', resultMatchOne)
 
+    let resultMatchTwo = this.findMatchTwo(currentNode, word);
+    console.log(word, 'match 2:', resultMatchTwo)
+
+
     this.determineAction(currentNode, word, resultMatchOne)
   }
 
@@ -28,6 +32,7 @@ class Trie {
     const wordLetters = [...word];
     const nodeKids = Object.keys(node.children);
     let result;
+    const lettersOfMatchedPrefix = []
     const matchTypeTwo = (node, word) => { 
       let kidLetters = [];
       let allKidsAsLetters = nodeKids.map(kid=>{
@@ -35,14 +40,17 @@ class Trie {
         return kidLetters;
       });
 
-      allKidsAsLetters.forEach((array)=>{
-        if(array[0] == wordLetters[0]){
+      
+
+      allKidsAsLetters.forEach((array, i)=>{
+        if(array[i] === wordLetters[i]){
           result = true;
+          lettersOfMatchedPrefix.push(array[i])
         }
       });    
     };
     matchTypeTwo(node, word);
-    return result;
+    return [result, lettersOfMatchedPrefix];
   }
 
   findMatchOne(node, word) { 
@@ -72,60 +80,20 @@ class Trie {
       node.children[word].completeWord = true;
     }
 
-    // if(resultMatchTwo) {
-
-    // }
+    if(resultMatchTwo) {
+      console.log('hi')
+      // const parsedKidNode = new Node(prefix);
+      // delete node.children[kidMatch];
+      // node.children[prefix] = parsedKidNode;
+      // const suffix1 = wordLetters.slice(letterCounter);
+      // const suffix2 = kidLetters.slice(letterCounter);
+      // node.children[prefix].children[suffix1.join('')] = new Node(suffix1.join(''));
+      // node.children[prefix].children[suffix1.join('')].completeWord = true;
+      // node.children[prefix].children[suffix2.join('')] = new Node(suffix2.join(''));
+      // node.children[prefix].children[suffix2.join('')].completeWord = true;  
+    }
   }
 
 }
-
-  
-    // 
-
-    // if (matchTypeTwo) {
-    //   console.log('hi')
-    // }
-
-    // const matchTypeThree = (() => {
-    //   if (true)
-    //     return 5
-    //   else
-    //     return 10
-    // })();
-
-  
-
-  
-     
-  // matchOne(node, word) {
-  //   console.log(node);
-  //   node.children[word] = new Node(word);
-  //   node.children[word].completeWord = true;
-  // }
-
-  // matchTwo(word) {
-    
-  //       
-
-  //   
-  // }
-
-  // matchThree(node, word) {
-
-  // }
-
-  // 
-    // 
-    // const parsedKidNode = new Node(prefix);
-    // delete node.children[kidMatch];
-    // node.children[prefix] = parsedKidNode;
-    // const suffix1 = wordLetters.slice(letterCounter);
-    // const suffix2 = kidLetters.slice(letterCounter);
-    // node.children[prefix].children[suffix1.join('')] = new Node(suffix1.join(''));
-    // node.children[prefix].children[suffix1.join('')].completeWord = true;
-    // node.children[prefix].children[suffix2.join('')] = new Node(suffix2.join(''));
-    // node.children[prefix].children[suffix2.join('')].completeWord = true;  
-
-
 
 module.exports = Trie;
